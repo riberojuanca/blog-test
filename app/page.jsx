@@ -1,16 +1,18 @@
-import Image from "next/image";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import Link from "next/link";
+// Importaciones
+
+import Image from "next/image"; // Permite mostrar imágenes en la página.
+import fs from "fs"; // Módulo nativo de Node.js para trabajar con archivos.
+import path from "path"; // Módulo nativo de Node.js para trabajar con rutas de archivos.
+import matter from "gray-matter"; // Biblioteca para extraer el frontmatter de archivos Markdown.
+import Link from "next/link"; // Permite crear enlaces a otras páginas dentro del proyecto Next.js.
 
 export default function Home() {
-  const blogDir = "blogs";
+  const postsDir = "posts";
 
-  const files = fs.readdirSync(path.join(blogDir));
+  const files = fs.readdirSync(path.join(postsDir));
 
-  const blogs = files.map((filename) => {
-    const fileContent = fs.readFileSync(path.join(blogDir, filename), "utf-8");
+  const posts = files.map((filename) => {
+    const fileContent = fs.readFileSync(path.join(postsDir, filename), "utf-8");
 
     const { data: frontMatter } = matter(fileContent);
     return {
@@ -25,17 +27,17 @@ export default function Home() {
       <section>
         <h2>Latest Posts</h2>
         <div>
-          {blogs.map((blog) => (
-            <Link href={"/blogs/" + blog.slug} passHref key={blog.slug}>
+          {posts.map((post) => (
+            <Link href={"/blog/" + post.slug} passHref key={post.slug}>
               <div>
                 <div>
-                  <h3>{blog.meta.title}</h3>
+                  <h3>{post.meta.title}</h3>
                 </div>
                 <div>
-                  <p>{blog.meta.description}</p>
+                  <p>{post.meta.description}</p>
                 </div>
                 <div>
-                  <p>{blog.meta.date}</p>
+                  <p>{post.meta.date}</p>
                 </div>
               </div>
             </Link>
