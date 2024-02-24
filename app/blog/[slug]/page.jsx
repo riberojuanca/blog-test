@@ -33,6 +33,7 @@ export default function Page({ params }) {
   return (
     <article className="postContainer">
       <h1 className="title-xl">{props.frontMatter.title}</h1>
+      <h4>Por {props.frontMatter.autor}</h4>
       <MDXRemote source={props.content}></MDXRemote>
     </article>
   );
