@@ -31,8 +31,8 @@ export default function Page({ params }) {
   const props = getPost(params);
 
   return (
-    <article>
-      <h1>{props.frontMatter.title}</h1>
+    <article className="postContainer">
+      <h1 className="title-xl">{props.frontMatter.title}</h1>
       <MDXRemote source={props.content}></MDXRemote>
     </article>
   );

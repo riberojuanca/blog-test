@@ -22,14 +22,14 @@ export default function Home() {
   });
 
   return (
-    <main>
+    <main className="mainContainer">
       <h1>My Next.js Blog Site</h1>
-      <section>
+      <section className="sectionContainer">
         <h2>Latest Posts</h2>
-        <div>
+        <div className="posts">
           {posts.map((post) => (
             <Link href={"/blog/" + post.slug} passHref key={post.slug}>
-              <div>
+              <div className="post">
                 <div>
                   <h3>{post.meta.title}</h3>
                 </div>
